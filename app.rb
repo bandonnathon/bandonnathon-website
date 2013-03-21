@@ -6,6 +6,10 @@ require 'uglifier'
 
 require 'sinatra/base'
 require 'sinatra/assetpack'
+
+require 'open-uri'
+require 'json'
+
 #require 'lib/sinatra/assetpackhelpers'
 
 
@@ -44,11 +48,7 @@ class App < Sinatra::Base
     ]
     
     css :application, '/css/application.css', [
-      '/css/h5bp.css',
-      '/css/bootstrap.css'#,
-      #'/css/bootstrap-responsive.css',
-      # '/css/bootstrap.aggregated.css',
-      #'/css/app.less'
+      '/css/style.css'
     ]
 
     js_compression  :uglify
@@ -62,7 +62,14 @@ class App < Sinatra::Base
 
   # TODO: how to merge all these routes into one?
   get '/' do
-    erb :"index.html", :layout => :"layout.html"
+
+    j = open("http://api.jo.je/virginmoneygiving/data/280684").read
+    data = JSON.parse(j);
+
+    percent = data['money_target'].to_i / 100
+    total = 100 - data['money_total'].to_i / percent
+
+    erb :"index.html", :layout => :"layout.html", :locals => {:data => data, :total => total}
   end
 
   get '/playlist' do

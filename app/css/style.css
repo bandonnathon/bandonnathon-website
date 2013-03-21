@@ -1,0 +1,200 @@
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+audio:not([controls]) {
+  display: none;
+}
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+a:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+a:hover,
+a:active {
+  outline: 0;
+}
+img {
+  height: auto;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle;
+}
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  color: #333333;
+  background-color: #ffffff;
+}
+a {
+  color: #0088cc;
+  text-decoration: none;
+}
+a:hover {
+  color: #005580;
+  text-decoration: underline;
+}
+
+
+
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #4fd9a9 url(/images/bg-gradient.png) repeat-x 0 0;
+  background-size: 100% 100%;
+  position: relative;
+}
+
+.page {
+  position: relative;
+  z-index: 2;
+}
+
+.pose {
+  background: url(/images/bg-home.jpg) no-repeat 50% 0;
+  background-size: cover;
+  bottom: 10px;
+  left: 10px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 1;
+}
+
+.welcome {
+  margin: 0 auto 0;
+  position: relative;
+  width: 50%;
+  top: 280px;
+}
+
+.welcome > img {
+  height: auto;
+  width: 100%;
+}
+
+.welcome a {
+  background: #4edaa9;
+  color: #fff;
+  display: inline-block;
+  font-size: 2.154em;
+  line-height: 1.5;
+  padding: 0 .5em;
+  text-transform: uppercase;
+  -webkit-transform: matrix(1, -0.175, 0, 1, 0, 0);
+}
+
+.donation {
+  font-family: "futura-pt";
+  font-weight: 500;
+  font-size: 1.1em;
+  background: #fc609d;
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  width: 240px;
+}
+
+.donation .inner {
+  background: #fff;
+  padding: 14px;
+  position: relative;
+  z-index: 2;
+}
+
+.donation .border {
+  background: #fc609d;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  z-index: 1;
+}
+
+.donation .money4trax {
+  border-bottom: 3px solid #fecfe1;
+  color: #fc609d;
+  display: block;
+  font-size: 1.846em;
+  margin: 0 0 .5em;
+  padding: 0 0 .5em;
+  text-transform: uppercase;
+}
+
+.donation a,
+.donation span {
+  line-height: 1.2;
+}
+
+.donation .donation-intro,
+.donation .donation-total {
+  color: #4edaa9;
+  display: block;
+}
+
+.donation .donation-intro {
+  font-size: 1.385em;
+  text-transform: uppercase;
+}
+
+.donation .donation-total {
+  font-size: 2.923em;
+}
+
+.donation .donation-meter {
+  background: url(/images/donation-meter-target.gif) repeat-x 0 0;
+  display: block;
+  height: 20px;
+  margin: 0 0 .5em;
+  width: 99%;
+}
+
+.donation .donation-charity {
+  color: #fc609d;
+  font-size: 1.154em;
+}
