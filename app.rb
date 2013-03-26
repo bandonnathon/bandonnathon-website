@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'bundler/setup'
 
-require 'less'
 require 'uglifier'
 
 require 'sinatra/base'
@@ -17,9 +16,18 @@ require 'json'
 
 
 
+def get_connection
+  return @db_connection if @db_connection
+  db = URI.parse(ENV['MONGOHQ_URL'])
+  db_name = db.path.gsub(/^\//, '')
+  @db_connection = Mongo::Connection.new(db.host, db.port).db(db_name)
+  @db_connection.authenticate(db.user, db.password) unless (db.user.nil? || db.user.nil?)
+  @db_connection
+end
 
 
-DB = Mongo::Connection.new.db("test", :pool_size => 5, :timeout => 5)
+
+#DB = Mongo::Connection.new.db("test", :pool_size => 5, :timeout => 5)
 
 def from_bson_id(obj) obj.merge({'_id' => obj['_id'].to_s}) end
 
@@ -49,11 +57,7 @@ class App < Sinatra::Base
   end
 
   configure do  
-    db = Mongo::Connection.new.db('learning-mongo');  
-    notes = db.collection('notes')  
-    #conn = Mongo::Connection.new("localhost", 27017)
-    #set :mongo_connection, conn
-    #set :mongo_db,         conn.db('test')
+    notes = get_connection().collection('notes')  
   end
 
   set :root, File.dirname(__FILE__)
@@ -124,7 +128,7 @@ class App < Sinatra::Base
 
   get '/playlist' do
 
-    songs = DB.collection('notes').find.to_a.map{|t| from_bson_id(t)}
+    songs = get_connection().collection('notes').find.to_a.map{|t| from_bson_id(t)}
 
     # get all songs which have been chosen by donaters, and return them
     erb :"playlist.html", :layout => :"layout.html", :locals => {:data => songs}
@@ -146,7 +150,7 @@ class App < Sinatra::Base
     }
 
     # add song from form into db
-    if DB.collection('notes').insert(song)
+    if get_connection().collection('notes').insert(song)
       redirect '/thanks'
     end
 
@@ -182,7 +186,6 @@ class App < Sinatra::Base
 
     data['tracks'].take(10).map do |track|
 
-      logger.info(track['href'])
       songs << Song.new( track['name'], track['album']['name'], track['popularity'], track['href'], track['artists'][0]['name'] )
     end
 

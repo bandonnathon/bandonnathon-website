@@ -3,11 +3,8 @@ source :rubygems
 
 gem 'therubyracer'
 gem 'uglifier'
-gem 'less'
 
-group :development do
-  gem 'thin'
-end
+gem 'thin'
 
 gem 'bson'
 gem 'bson_ext'
