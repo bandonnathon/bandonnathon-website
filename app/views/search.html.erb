@@ -1,0 +1,33 @@
+<div class="page">
+  <div class="songs">
+    <div class="playlist">
+      <div class="inner">
+
+        this is where the search results go
+
+        <ul>
+          <% for item in data %>
+            <li>
+              <b><%= item.name %></b> on album 
+              <b><%= item.album %></b> by 
+              <b><%= item.artist %></b> 
+              (popularity: <%= item.popularity %>)
+
+              <p>
+                <form action="/playlist" method=POST>
+                  <input type="hidden" name="name" value="<%= item.name %>" />
+                  <input type="hidden" name="album" value="<%= item.album %>" />
+                  <input type="hidden" name="popularity" value="<%= item.popularity %>" />
+                  <input type="hidden" name="href" value="<%= item.href %>" />
+                  <input type="hidden" name="artist" value="<%= item.artist %>" />
+                  <input type="submit" value="add to playlist" />
+                </form></p>
+            </li>
+          <% end %>
+        <ul>
+
+      </div>
+      <span class="border"></span>
+    </div>
+  </div>
+</div>

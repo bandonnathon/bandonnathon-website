@@ -110,6 +110,8 @@ body {
   position: relative;
   width: 50%;
   top: 280px;
+  font-family: "futura-pt";
+  font-weight: 500;
 }
 
 .welcome > img {
@@ -128,7 +130,8 @@ body {
   -webkit-transform: matrix(1, -0.175, 0, 1, 0, 0);
 }
 
-.donation {
+.donation,
+.playlist {
   font-family: "futura-pt";
   font-weight: 500;
   font-size: 1.1em;
@@ -139,7 +142,12 @@ body {
   width: 240px;
 }
 
-.donation .inner {
+.playlist {
+  width: 100%;
+}
+
+.donation .inner,
+.playlist .inner {
   background: #fff;
   padding: 14px;
   position: relative;
@@ -198,3 +206,19 @@ body {
   color: #fc609d;
   font-size: 1.154em;
 }
+
+
+
+
+/*****/
+
+.songs {
+  margin: 0 auto 0;
+  position: relative;
+  width: 50%;
+  
+  font-family: "futura-pt";
+  font-weight: 500;
+}
+
+/******/

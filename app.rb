@@ -6,6 +6,9 @@ require 'uglifier'
 
 require 'sinatra/base'
 require 'sinatra/assetpack'
+require "sinatra/reloader"
+
+require 'mongo'
 
 require 'open-uri'
 require 'json'
@@ -13,12 +16,50 @@ require 'json'
 #require 'lib/sinatra/assetpackhelpers'
 
 
+
+
+
+DB = Mongo::Connection.new.db("test", :pool_size => 5, :timeout => 5)
+
+def from_bson_id(obj) obj.merge({'_id' => obj['_id'].to_s}) end
+
+
+
+class Song
+  attr_accessor :name, :album, :popularity, :href, :artist
+
+  def initialize(name, album, popularity, href, artist)
+      @name = name
+      @album = album
+      @popularity = popularity
+      @href = href
+      @artist = artist
+  end
+end
+
+
+
+
+
 class App < Sinatra::Base
+
+  configure :development do
+    register Sinatra::Reloader
+    enable :logging
+  end
+
+  configure do  
+    db = Mongo::Connection.new.db('learning-mongo');  
+    notes = db.collection('notes')  
+    #conn = Mongo::Connection.new("localhost", 27017)
+    #set :mongo_connection, conn
+    #set :mongo_db,         conn.db('test')
+  end
+
   set :root, File.dirname(__FILE__)
   set :app_file, __FILE__
   set :views, File.join('app', 'views')
-  
-  #set :logging, true
+
   register Sinatra::AssetPack
 
   # assetpack stuff
@@ -60,6 +101,15 @@ class App < Sinatra::Base
     File.read(File.join('public', '404.html'))
   end
 
+
+
+
+  #
+  #
+  # ROUTES #
+  #
+  #
+
   # TODO: how to merge all these routes into one?
   get '/' do
 
@@ -73,19 +123,70 @@ class App < Sinatra::Base
   end
 
   get '/playlist' do
-    erb :"index.html", :layout => :"layout.html"
+
+    songs = DB.collection('notes').find.to_a.map{|t| from_bson_id(t)}
+
+    # get all songs which have been chosen by donaters, and return them
+    erb :"playlist.html", :layout => :"layout.html", :locals => {:data => songs}
+  end
+
+
+
+
+
+  post '/playlist' do
+
+    # add a song to the list
+    song = {
+      :name => params['name'],
+      :album => params['album'],
+      :popularity => params['popularity'],
+      :href => params['href'],
+      :artist => params['artist'] 
+    }
+
+    # add song from form into db
+    if DB.collection('notes').insert(song)
+      redirect '/thanks'
+    end
+
+    # redirect to 'thanks'
+    "{\"_id\": \"#{oid.to_s}\"}"
+
+    # drop cookie so this song can't be added again?
   end
 
   get '/donate' do
-    erb :"index.html", :layout => :"layout.html"
+    erb :"donate.html", :layout => :"layout.html"
   end
 
   get '/thanks' do
-    erb :"index.html", :layout => :"layout.html"
+    erb :"thanks.html", :layout => :"layout.html"
   end
 
   get '/map' do
-    erb :"index.html", :layout => :"layout.html"
+    erb :"map.html", :layout => :"layout.html"
+  end
+
+  get '/addsong' do
+    erb :"addsong.html", :layout => :"layout.html"
+  end
+
+  get '/search' do
+    s = params[:song]
+    j = open("http://ws.spotify.com/search/1/track.json?q=#{URI.encode(s)}").read
+    data = JSON.parse(j);
+
+    # parse JSON into smaller array of just the data we need
+    songs = []
+
+    data['tracks'].take(10).map do |track|
+
+      logger.info(track['href'])
+      songs << Song.new( track['name'], track['album']['name'], track['popularity'], track['href'], track['artists'][0]['name'] )
+    end
+
+    erb :"search.html", :layout => :"layout.html", :locals => {:data => songs}
   end
 
   # stub json for spotify api
