@@ -1,24 +1,29 @@
- <%= erb :_menu, :locals => { :current => 'playlist' } %>
+ 
 
 <div class="page">
   <div class="songs">
-    <div class="playlist">
-      <div class="inner">
+    <div class="playlist">      
+        
+        
 
-        this is where the playlist goes
+        <!-- <p class="playlistTitle">The marathon mix</p> -->
 
-        <ul>
-            <% for item in data %>
-            <li>
-              <b><%= item['name'] %></b> by 
-              <b><%= item['artist'] %></b> 
-            </li>
+        <div class="inner" style="padding:0;margin:0">
+          <ul style="padding:0;margin:0">
+              <% for item in data %>
+              <li>
+                <b><%= item['name'] %></b> by 
+                <b><%= item['artist'] %></b> 
+              </li>
 
-          <% end %>
-        <ul>
+            <% end %>
+          </ul>
+          <p style="padding:0;margin:0"><a href="/addsong">Give your cash to add your fave track</a></p>
+        </div>
 
-      </div>
-      <span class="border"></span>
+        <span class="border"></span>
     </div>
   </div>
 </div>
+
+<div class="playlistpose"></div>

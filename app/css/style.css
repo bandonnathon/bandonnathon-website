@@ -92,6 +92,7 @@ body {
 .page {
   position: relative;
   z-index: 2;
+  height: 100%;
 }
 
 .pose {
@@ -147,6 +148,7 @@ body {
 }
 
 .donation .inner,
+.player .inner,
 .playlist .inner {
   background: #fff;
   padding: 14px;
@@ -154,7 +156,8 @@ body {
   z-index: 2;
 }
 
-.donation .border {
+.donation .border,
+.player .border {
   background: #fc609d;
   width: 100%;
   height: 100%;
@@ -221,4 +224,102 @@ body {
   font-weight: 500;
 }
 
+.playlistpose {
+  background: url(/images/bg-playlist.jpg) no-repeat 50% 0;
+  background-size: cover;
+  bottom: 10px;
+  left: 10px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 1;
+}
 /******/
+
+
+
+
+
+/******/
+
+.player {
+  font-family: "futura-pt";
+  font-weight: 500;
+  font-size: 1.1em;
+  background: #fef200;
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+  width: 328px;
+}
+
+.player .inner {
+  background: #fef200;
+  text-transform: uppercase;
+}
+
+.player .border {
+  background: #4edaa9;
+}
+
+.player .latestSong {
+  background: #fff;
+  padding: 0;
+}
+
+/******/
+
+
+.playlist {
+  text-transform: uppercase;
+  /*opacity: 0.7;*/
+  background: #fff;
+}
+
+.playlist .inner {
+  padding: 0;
+}
+
+.playlist ul {
+  list-style: none;
+  padding: 10px 20px 10px 20px;
+}
+
+.playlist li {
+  border-bottom: 1px solid green;
+  padding: 10px 0;
+}
+
+.playlist p {
+  color: #fc609d;
+  padding: 10px 20px;
+  font-size: 1.2em;
+}
+
+p.playlistTitle {
+  color: #fff;
+  background-color: #4edaa9;
+  display: inline-block;
+  -webkit-transform: matrix(1, -0.175, 0, 1, 0, 0);
+  font-size: 1.6em;
+  margin: 20px 0 0 0;
+  padding: 10px;
+  z-index:100;
+}
+
+.playlist .border {
+  background: red;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 30px;
+  top: 3px;
+}
+
+/******/
+
+
+
+
+
+

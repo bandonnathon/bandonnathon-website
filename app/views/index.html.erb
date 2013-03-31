@@ -16,6 +16,21 @@
 		<a href="/addsong">Add your track &amp; help kick HIV's ass</a>
 	</div>
 
+	<div class="player">
+		<div class="inner">
+			<a href="/playlist" class="money4trax">Check out the marathon mix</a>
+				<div class="latestSong">
+					
+					<% if latestSong.empty? %>
+						no songs added yet
+					<% else %>
+						<iframe src="https://embed.spotify.com/?uri=<%= latestSong.first['href'] %>" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+					<% end %>
+				</div>
+		</div>
+		<span class="border"></span>
+	</div>
+
 	<div id="container"></div>
 
 	<div id="nav"></div>

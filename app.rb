@@ -18,16 +18,12 @@ require 'json'
 
 def get_connection
   return @db_connection if @db_connection
-  db = URI.parse(ENV['MONGOHQ_URL'])
+  db = URI.parse(ENV['MONGOHQ_URL'] || 'mongodb://localhost:27017/badonnathon')
   db_name = db.path.gsub(/^\//, '')
   @db_connection = Mongo::Connection.new(db.host, db.port).db(db_name)
   @db_connection.authenticate(db.user, db.password) unless (db.user.nil? || db.user.nil?)
   @db_connection
 end
-
-
-
-#DB = Mongo::Connection.new.db("test", :pool_size => 5, :timeout => 5)
 
 def from_bson_id(obj) obj.merge({'_id' => obj['_id'].to_s}) end
 
@@ -57,7 +53,7 @@ class App < Sinatra::Base
   end
 
   configure do  
-    notes = get_connection().collection('notes')  
+    notes = get_connection().collection('songs')  
   end
 
   set :root, File.dirname(__FILE__)
@@ -117,20 +113,36 @@ class App < Sinatra::Base
   # TODO: how to merge all these routes into one?
   get '/' do
 
-    j = open("http://api.jo.je/virginmoneygiving/data/280684").read
-    data = JSON.parse(j);
+    # get total donations from virgin
+    # - using live data on prod
+    if ENV['RACK_ENV'] == 'production'
+      j = open("http://api.jo.je/virginmoneygiving/data/280684").read
+      data = JSON.parse(j);
 
-    percent = data['money_target'].to_i / 100
-    total = 100 - data['money_total'].to_i / percent
+      percent = data['money_target'].to_i / 100
+      total = 100 - data['money_total'].to_i / percent
 
-    erb :"index.html", :layout => :"layout.html", :locals => {:data => data, :total => total}
+    # - using stub data on dev
+    else
+      data = { 'money_total' => 999,  }
+      total = 25
+    end
+
+    # get songs from db
+    latestSong = get_connection().collection('songs').find().sort({_id:1}).to_a.map{|t| from_bson_id(t)} || {}
+
+    # serve template with data
+    erb :"index.html", :layout => :"layout.html", :locals => {:data => data, :total => total, :latestSong => latestSong}
   end
+
+
 
   get '/playlist' do
 
-    songs = get_connection().collection('notes').find.to_a.map{|t| from_bson_id(t)}
+    # get songs from db
+    songs = get_connection().collection('songs').find.to_a.map{|t| from_bson_id(t)}
 
-    # get all songs which have been chosen by donaters, and return them
+    # serve template with data
     erb :"playlist.html", :layout => :"layout.html", :locals => {:data => songs}
   end
 
@@ -150,7 +162,7 @@ class App < Sinatra::Base
     }
 
     # add song from form into db
-    if get_connection().collection('notes').insert(song)
+    if get_connection().collection('songs').insert(song)
       redirect '/thanks'
     end
 
