@@ -4,6 +4,7 @@ window.MarathonMan = Backbone.Router.extend({
         'playlist': 'playlist',
         '': 'home',
         'home': 'home',
+        'addsong': 'addsong',
         'donate': 'donate',
         'thanks': 'thanks',
         'map': 'map'
@@ -13,9 +14,9 @@ window.MarathonMan = Backbone.Router.extend({
 
         _.bindAll(this, 'playlist');
 
-        this.songSelectorView = new SongSelectorView( {
+        this.searchResultsCollection = new SearchResultsCollection();
 
-            el : $('#app')
+        this.songSelectorView = new SongSelectorView( {
             // collection: ? 
             // player: ?
             // library: ?
@@ -42,6 +43,12 @@ window.MarathonMan = Backbone.Router.extend({
                 model: self.homePage
             }).render();
         });
+    },
+
+    addsong: function() {
+        //$('#container').text('now at home');
+
+        this.songSelectorView.render();
     },
 
     playlist: function() {

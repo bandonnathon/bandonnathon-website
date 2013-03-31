@@ -21,7 +21,7 @@
 			<a href="/playlist" class="money4trax">Check out the marathon mix</a>
 				<div class="latestSong">
 					<% _.each(latestSong, function(song) { %>
-					<iframe src="https://embed.spotify.com/?uri=<%= latestSong.href %>" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+					<iframe src="https://embed.spotify.com/?uri=<%= song.href %>" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
 					<% }) %>
 				</div>
 		</div>
