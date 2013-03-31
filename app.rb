@@ -82,8 +82,8 @@ class App < Sinatra::Base
     js :app, '/js/app.js', [
       '/js/libs/underscore-min.js',
       '/js/libs/backbone-min.js',
-      '/js/NavView.js',
-      '/js/SongSelectorView.js',
+      '/js/views/NavView.js',
+      '/js/views/SongSelectorView.js',
       '/js/marathonMan.js',
       'js/script.js'
     ]
