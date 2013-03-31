@@ -32,6 +32,16 @@ window.MarathonMan = Backbone.Router.extend({
 
     home: function() {
         //$('#container').text('now at home');
+
+        var self = this;
+
+        this.homePage = new HomePageModel();
+
+        $.when(this.homePage.fetch()).done(function() {
+            self.homePageView = new HomePageView({
+                model: self.homePage
+            }).render();
+        });
     },
 
     playlist: function() {

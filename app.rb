@@ -7,6 +7,8 @@ require 'sinatra/base'
 require 'sinatra/assetpack'
 require "sinatra/reloader"
 
+require 'sinatra/backbone'
+
 require 'mongo'
 
 require 'open-uri'
@@ -62,6 +64,9 @@ class App < Sinatra::Base
 
   register Sinatra::AssetPack
 
+  register Sinatra::JstPages
+  serve_jst '/js/jst.js'
+
   # assetpack stuff
   assets do
     serve '/js',     :from => 'app/js'
@@ -82,8 +87,10 @@ class App < Sinatra::Base
     js :app, '/js/app.js', [
       '/js/libs/underscore-min.js',
       '/js/libs/backbone-min.js',
-      '/js/views/NavView.js',
-      '/js/views/SongSelectorView.js',
+      '/js/jst.js',
+      '/js/models/*',
+      '/js/collections/*',
+      '/js/views/*',
       '/js/marathonMan.js',
       'js/script.js'
     ]
@@ -132,6 +139,32 @@ class App < Sinatra::Base
 
     # serve template with data
     erb :"index.html", :layout => :"layout.html", :locals => {:data => data, :total => total, :latestSong => latestSong}
+  end
+
+  get '/index.json' do
+
+    content_type :json
+
+    # get total donations from virgin
+    # - using live data on prod
+    if ENV['RACK_ENV'] == 'production'
+      j = open("http://api.jo.je/virginmoneygiving/data/280684").read
+      data = JSON.parse(j);
+
+      data['percent'] = data['money_target'].to_i / 100
+      data['total'] = 100 - data['money_total'].to_i / percent
+
+    # - using stub data on dev
+    else
+      data = { 'money_total' => 999,  }
+      data['total'] = 25
+    end
+
+    # get songs from db
+    data['latestSong'] = get_connection().collection('songs').find().sort({_id:1}).to_a.map{|t| from_bson_id(t)} || {}
+
+    # serve template with data
+    data.to_json
   end
 
 
