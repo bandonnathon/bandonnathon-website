@@ -110,7 +110,6 @@ class App < Sinatra::Base
   #
   #
 
-  # TODO: how to merge all these routes into one?
   get '/' do
 
     # get total donations from virgin
@@ -137,6 +136,8 @@ class App < Sinatra::Base
 
 
 
+
+
   get '/playlist' do
 
     # get songs from db
@@ -144,6 +145,11 @@ class App < Sinatra::Base
 
     # serve template with data
     erb :"playlist.html", :layout => :"layout.html", :locals => {:data => songs}
+  end
+
+  get '/playlist.json' do
+    content_type :json
+    get_connection().collection('songs').find.to_a.map{|t| from_bson_id(t)}.to_json
   end
 
 
@@ -172,21 +178,41 @@ class App < Sinatra::Base
     # drop cookie so this song can't be added again?
   end
 
+
+
+
+
   get '/donate' do
     erb :"donate.html", :layout => :"layout.html"
   end
+
+
+
+
 
   get '/thanks' do
     erb :"thanks.html", :layout => :"layout.html"
   end
 
+
+
+
+
   get '/map' do
     erb :"map.html", :layout => :"layout.html"
   end
 
+
+
+
+
   get '/addsong' do
     erb :"addsong.html", :layout => :"layout.html"
   end
+
+
+
+
 
   get '/search' do
     s = params[:song]
@@ -197,18 +223,42 @@ class App < Sinatra::Base
     songs = []
 
     data['tracks'].take(10).map do |track|
-
       songs << Song.new( track['name'], track['album']['name'], track['popularity'], track['href'], track['artists'][0]['name'] )
     end
 
     erb :"search.html", :layout => :"layout.html", :locals => {:data => songs}
   end
 
-  # stub json for spotify api
-  get '/search' do
-    content_type "application/json"
-    File.readlines("public/stub.json")
+
+
+
+
+  get '/search.json' do
+    content_type :json
+
+    s = params[:song]
+    j = open("http://ws.spotify.com/search/1/track.json?q=#{URI.encode(s)}").read
+    data = JSON.parse(j);
+
+    # parse JSON into smaller array of just the data we need
+    songs = []
+
+    data['tracks'].take(10).map do |track|
+      songs << {
+        :name => track['name'],
+        :album => track['album']['name'],
+        :popularity => track['popularity'],
+        :track => track['href'],
+        :artist => track['artists'][0]['name']
+      }
+    end
+
+    songs.to_json
   end
+
+
+
+
   
   run! if app_file == $0
 end
