@@ -18,8 +18,14 @@ window.PlaylistView = Backbone.View.extend({
         ev.preventDefault();
 
         App.navigate('/addsong', { trigger: true });
+    },
+
+    remove: function() {
+        this.undelegateEvents();
 
         $('.flipContainer').removeClass('flipped');
+
+        this.$el.empty().detach();
     },
 
     render: function() {

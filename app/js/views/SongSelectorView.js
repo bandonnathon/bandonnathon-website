@@ -5,7 +5,7 @@ window.SongSelectorView = Backbone.View.extend({
     template: 'backbone/songselector',
 
     events: {
-    	'click input[type="submit"]': 'search'
+    	'click .search-spotify input[type="submit"]': 'search'
     },
 
     initialize: function() {
