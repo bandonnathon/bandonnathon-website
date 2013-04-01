@@ -1,19 +1,28 @@
- <div class="page">
-  <div class="songs">
-    <div class="playlist">      
-        
-        
+<div class="page">
+  <div class="panel">
+    <div class="playlist playlist-mix">
+      <div class="inner">
 
-        <!-- <p class="playlistTitle">The marathon mix</p> -->
+        <h1>The marathon mix</h1>
 
-        <div class="inner" style="padding:0;margin:0">
-          <ul style="padding:0;margin:0" id="playlist"></ul>
-          <p style="padding:0;margin:0"><a href="/addsong" class="money4trax">Give your cash to add your fave track</a></p>
-        </div>
+        <ul id="playlist">
+          <li>
+            <span class="track-name">Beyonce</span>
+            <span class="track-from">from Hannah Drury</span>
+          </li>
+          <li>
+            <span class="track-name">Beyonce</span>
+            <span class="track-from">from Hannah Drury</span>
+          </li>
+          <li>
+            <span class="track-name">Beyonce</span>
+            <span class="track-from">from Hannah Drury</span>
+          </li>
+        </ul>
 
-        <span class="border"></span>
+        <a href="/addsong" class="cta-donate">Donate to add your song to the marathon mix</a>
+      </div>
     </div>
   </div>
 </div>
-
 <div class="playlistpose"></div>

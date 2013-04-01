@@ -178,6 +178,7 @@ body {
   position: absolute;
   top: -1em;
   left: 0;
+  text-transform: uppercase;
   -webkit-transform: matrix(1, -0.175, 0, 1, 0, 0);
   transform: matrix(1, -0.175, 0, 1, 0, 0);
 }
@@ -205,7 +206,11 @@ body {
   line-height: 1.5;
   padding: 0 .5em;
   text-transform: uppercase;
-  -webkit-transform: matrix(1, -0.175, 0, 1, 0, 0);
+}
+
+.strap {
+  display: inline-block;
+ -webkit-transform: matrix(1, -0.175, 0, 1, 0, 0); 
 }
 
 .donation,
@@ -310,6 +315,17 @@ body {
   top: 10px;
   z-index: 1;
 }
+
+.cta-donate {
+  color: rgb(252,96,157);
+  font-size: 2em;
+  text-transform: uppercase;
+}
+
+.cta-donate:focus,
+.cta-donate:hover {
+  color: rgb(68,42,141);
+}
 /******/
 
 
@@ -346,25 +362,24 @@ body {
 /******/
 
 
+
+
 .playlist {
   background: #fff;
   background: rgba(255, 255, 255, .9);
   box-shadow: 3px 3px 0 0 rgb(252, 96, 157);
-  text-transform: uppercase;
 }
 
 .playlist .inner {
-  padding: 3em 1.5em;
+  padding: 3em 1.5em 1.5em;
 }
 
-.playlist ul {
-  list-style: none;
-  padding: 10px 20px 10px 20px;
-}
-
-.playlist li {
-  border-bottom: 1px solid green;
-  padding: 10px 0;
+.playlist li:after {
+  clear: both;
+  content: '';
+  display: block;
+  height: 0;
+  visibility: hidden;
 }
 
 .playlist p {
@@ -435,22 +450,34 @@ p.playlistTitle {
   color: rgb(252,96,157);
   font-family: "futura-pt";
   font-size: 1.5em;
-  margin: 0;
+  margin: 0 0 2em;
   padding: 0;
 }
 
 .playlist ul li {
   border-bottom: 1px solid rgb(78,218,169);
+  list-style: none;
+  padding: .25em 0;
 }
 
 .playlist ul .track-name {
   float: left;
+  text-transform: uppercase;  
 }
 
-.playlist ul .track-artist {
+.playlist ul .track-artist,
+.playlist ul .track-from {
   float: right;
+  text-transform: inherit;
 }
 
 .playlist ul form {
   clear: both;
 }
+<<<<<<< HEAD
+
+.playlist-mix ul {
+  color: rgb(51,51,51);
+}
+=======
+>>>>>>> 031bc393c6e615ffd20cc6442291d7901fa3050e

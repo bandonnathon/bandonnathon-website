@@ -12,7 +12,10 @@
 
 	<div class="welcome">
 		<img src="/images/logo-badonna.png" alt="Badonnathon">
-		<a href="/addsong">Add your track &amp; help kick HIV's ass</a>
+		<div class="strap">
+			<a href="/addsong">Add your track &amp; help kick HIV's ass</a>
+			<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.badonnathon.com&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=374956165952121" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>
+		</div>
 	</div>
 
 	<div class="player">

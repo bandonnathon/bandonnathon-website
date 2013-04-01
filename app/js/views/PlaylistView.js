@@ -5,7 +5,7 @@ window.PlaylistView = Backbone.View.extend({
     template: 'backbone/playlist',
 
     events: {
-        'click .money4trax': 'addSong'
+        'click .cta-donate': 'addSong'
     },
 
     initialize: function() {

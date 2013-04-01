@@ -3,7 +3,7 @@
     <div class="playlist">
       <div class="inner">
 
-        <h1>Choose your track</h1>
+        <h1>Pick your track</h1>
           
         <form action="/search" class="search-spotify clearfix">
           <input type="text" name="song" placeholder="Type a song's name or artist here" />

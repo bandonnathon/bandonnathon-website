@@ -10,11 +10,16 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <script src="http://connect.facebook.net/en_US/all.js"></script> 
+
         <!-- fonts -->
         <script type="text/javascript" src="//use.typekit.net/kbs4eab.js"></script>
         <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
         
+        <script>
+            window.fbAppId = '<%= fbAppId %>';
+        </script>
+
         <%= css :application, :media => 'screen' %>
         <%= js :head %>
 
