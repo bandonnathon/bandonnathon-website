@@ -6,7 +6,7 @@
         <h1>Pick your track</h1>
           
         <form action="/search" class="search-spotify clearfix">
-          <input type="text" name="song" placeholder="Type a song's name or artist here" />
+          <input type="text" name="song" value="Type a song's name or artist here" />
           <input type="submit" />
         </form>
 
