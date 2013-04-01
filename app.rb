@@ -192,7 +192,7 @@ class App < Sinatra::Base
     songs = get_connection().collection('songs').find.to_a.map{|t| from_bson_id(t)}
 
     # serve template with data
-    erb :"playlist.html", :layout => :"layout.html", :locals => {:data => songs}
+    erb :"playlist.html", :layout => :"layout.html", :locals => {:data => songs, :fbAppId => ENV["FACEBOOK_APP_ID"] }
   end
 
   get '/playlist.json' do
@@ -262,7 +262,7 @@ class App < Sinatra::Base
       @loggedin = false
     end
 
-    erb :"addsong.html", :layout => :"layout.html"
+    erb :"addsong.html", :layout => :"layout.html", :locals => { :fbAppId => ENV["FACEBOOK_APP_ID"] }
   end
 
 
