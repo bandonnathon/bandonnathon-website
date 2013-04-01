@@ -245,6 +245,12 @@ class App < Sinatra::Base
 
 
 
+  get '/about' do
+    erb :"about.html", :layout => :"layout.html", :locals => { :fbAppId => ENV["FACEBOOK_APP_ID"] }
+  end
+
+
+
 
   get '/map' do
     erb :"map.html", :layout => :"layout.html"

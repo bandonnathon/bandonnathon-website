@@ -6,7 +6,7 @@
 			<span class="donation-intro">Big up you've raised</span>
 			<span class="donation-total">&pound;<%= money_total %></span>
 			<span class="donation-meter"><span style="height: 20px; width: <%= total %>%; display: block; background: url(/images/donation-meter-target-dark.gif);"></span></span>
-			<a href="#" class="donation-charity">for the Terrence Higgins Trust</a>
+			<a href="/about" class="donation-charity">for the Terrence Higgins Trust</a>
 		</div>
 	</div>
 

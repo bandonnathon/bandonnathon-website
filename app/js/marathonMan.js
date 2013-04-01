@@ -7,7 +7,8 @@ window.MarathonMan = Backbone.Router.extend({
         'addsong': 'addsong',
         'donate': 'donate',
         'thanks': 'thanks',
-        'map': 'map'
+        'map': 'map',
+        'about': 'about'
     },
 
     initialize: function() {
@@ -34,6 +35,8 @@ window.MarathonMan = Backbone.Router.extend({
             el : $('#nav')
 
         } );
+
+        this.aboutView = new AboutView();
 
     },
 
@@ -62,5 +65,9 @@ window.MarathonMan = Backbone.Router.extend({
     map: function() {
         // $('#container').empty();
         // $('#container').text('now at map');
+    },
+
+    about: function () {
+        this.aboutView.render();
     }
 });
