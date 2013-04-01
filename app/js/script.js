@@ -1,7 +1,7 @@
 $(function() {
 
   FB.init({
-    appId: '437795012974751',
+    appId: window.fbAppId,
     xfbml: true
   });
 

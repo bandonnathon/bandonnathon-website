@@ -153,7 +153,7 @@ class App < Sinatra::Base
     latestSong = get_connection().collection('songs').find().sort({_id:1}).to_a.map{|t| from_bson_id(t)} || {}
 
     # serve template with data
-    erb :"index.html", :layout => :"layout.html", :locals => {:data => data, :total => total, :latestSong => latestSong}
+    erb :"index.html", :layout => :"layout.html", :locals => {:data => data, :total => total, :latestSong => latestSong, :fbAppId => ENV["FACEBOOK_APP_ID"] }
   end
 
   get '/index.json' do
