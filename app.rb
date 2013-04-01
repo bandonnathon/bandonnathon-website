@@ -68,10 +68,6 @@ class App < Sinatra::Base
     enable :logging
   end
 
-  configure do  
-    notes = get_connection().collection('songs')  
-  end
-
   use Rack::Session::Cookie, secret: 'PUT_A_GOOD_SECRET_IN_HERE'
   set :root, File.dirname(__FILE__)
   set :app_file, __FILE__
@@ -150,7 +146,7 @@ class App < Sinatra::Base
     end
 
     # get songs from db
-    latestSong = get_connection().collection('songs').find().sort({_id:1}).to_a.map{|t| from_bson_id(t)} || {}
+    latestSong = get_connection().collection('songs').find().sort({ _id:-1}).limit(1).to_a.map{|t| from_bson_id(t)} || {}
 
     # serve template with data
     erb :"index.html", :layout => :"layout.html", :locals => {:data => data, :total => total, :latestSong => latestSong, :fbAppId => ENV["FACEBOOK_APP_ID"] }
@@ -176,7 +172,7 @@ class App < Sinatra::Base
     end
 
     # get songs from db
-    data['latestSong'] = get_connection().collection('songs').find().sort({_id:1}).to_a.map{|t| from_bson_id(t)} || {}
+    data['latestSong'] = get_connection().collection('songs').find().sort({_id:-1}).limit(1).to_a.map{|t| from_bson_id(t)} || {}
 
     # serve template with data
     data.to_json
@@ -303,7 +299,7 @@ class App < Sinatra::Base
         :name => track['name'],
         :album => track['album']['name'],
         :popularity => track['popularity'],
-        :track => track['href'],
+        :href => track['href'],
         :artist => track['artists'][0]['name']
       }
     end

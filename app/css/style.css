@@ -211,7 +211,11 @@ body {
   line-height: 1.5;
   padding: 0 .5em;
   text-transform: uppercase;
+}
+
+.welcome .strap {
   -webkit-transform: matrix(1, -0.175, 0, 1, 0, 0);
+  transform: matrix(1, -0.175, 0, 1, 0, 0);
 }
 
 .donation,
