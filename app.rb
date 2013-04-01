@@ -22,9 +22,9 @@ require 'koala'
 
 
 # fb shiz
-APP_ID     = 374956165952121
-APP_SECRET = 'd71b898e1a65bf1ddd20d8944825feb9'
-SITE_URL   = 'https://www.badonnathon.com/'
+APP_ID     = ENV["FACEBOOK_APP_ID"]
+APP_SECRET = ENV["FACEBOOK_SECRET"]
+SITE_URL   = ENV["SITE_URL"]
 
 
 
@@ -134,12 +134,6 @@ class App < Sinatra::Base
 
   get '/' do
 
-    if session['access_token']
-      status = 'You are logged in! <a href="/logout">Logout</a>'
-    else
-      status = '<a href="/login">Login</a>'
-    end
-
     # get total donations from virgin
     # - using live data on prod
     if ENV['RACK_ENV'] == 'production'
@@ -159,7 +153,7 @@ class App < Sinatra::Base
     latestSong = get_connection().collection('songs').find().sort({_id:1}).to_a.map{|t| from_bson_id(t)} || {}
 
     # serve template with data
-    erb :"index.html", :layout => :"layout.html", :locals => {:data => data, :total => total, :latestSong => latestSong, :status => status}
+    erb :"index.html", :layout => :"layout.html", :locals => {:data => data, :total => total, :latestSong => latestSong}
   end
 
   get '/index.json' do
@@ -261,6 +255,13 @@ class App < Sinatra::Base
 
 
   get '/addsong' do
+
+    if session['access_token']
+      @loggedin = true
+    else
+      @loggedin = false
+    end
+
     erb :"addsong.html", :layout => :"layout.html"
   end
 
