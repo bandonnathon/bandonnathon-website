@@ -107,7 +107,7 @@ class App < Sinatra::Base
       '/js/collections/*',
       '/js/views/*',
       '/js/marathonMan.js',
-      'js/script.js'
+      '/js/script.js'
     ]
     
     css :application, '/css/application.css', [
@@ -153,7 +153,7 @@ class App < Sinatra::Base
     latestSong = get_connection().collection('songs').find().sort({_id:1}).to_a.map{|t| from_bson_id(t)} || {}
 
     # serve template with data
-    erb :"index.html", :layout => :"layout.html", :locals => {:data => data, :total => total, :latestSong => latestSong}
+    erb :"index.html", :layout => :"layout.html", :locals => {:data => data, :total => total, :latestSong => latestSong, :fbAppId => ENV["FACEBOOK_APP_ID"] }
   end
 
   get '/index.json' do
@@ -167,7 +167,7 @@ class App < Sinatra::Base
       data = JSON.parse(j);
 
       data['percent'] = data['money_target'].to_i / 100
-      data['total'] = 100 - data['money_total'].to_i / percent
+      data['total'] = 100 - data['money_total'].to_i / data['percent']
 
     # - using stub data on dev
     else
@@ -192,7 +192,7 @@ class App < Sinatra::Base
     songs = get_connection().collection('songs').find.to_a.map{|t| from_bson_id(t)}
 
     # serve template with data
-    erb :"playlist.html", :layout => :"layout.html", :locals => {:data => songs}
+    erb :"playlist.html", :layout => :"layout.html", :locals => {:data => songs, :fbAppId => ENV["FACEBOOK_APP_ID"] }
   end
 
   get '/playlist.json' do
@@ -262,7 +262,7 @@ class App < Sinatra::Base
       @loggedin = false
     end
 
-    erb :"addsong.html", :layout => :"layout.html"
+    erb :"addsong.html", :layout => :"layout.html", :locals => { :fbAppId => ENV["FACEBOOK_APP_ID"] }
   end
 
 

@@ -206,7 +206,11 @@ body {
   line-height: 1.5;
   padding: 0 .5em;
   text-transform: uppercase;
-  -webkit-transform: matrix(1, -0.175, 0, 1, 0, 0);
+}
+
+.strap {
+  display: inline-block;
+ -webkit-transform: matrix(1, -0.175, 0, 1, 0, 0); 
 }
 
 .donation,
@@ -470,7 +474,10 @@ p.playlistTitle {
 .playlist ul form {
   clear: both;
 }
+<<<<<<< HEAD
 
 .playlist-mix ul {
   color: rgb(51,51,51);
 }
+=======
+>>>>>>> 031bc393c6e615ffd20cc6442291d7901fa3050e
