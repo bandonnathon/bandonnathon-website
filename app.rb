@@ -14,7 +14,19 @@ require 'mongo'
 require 'open-uri'
 require 'json'
 
-#require 'lib/sinatra/assetpackhelpers'
+# for fb connect
+require 'koala'
+
+
+
+
+
+# fb shiz
+APP_ID     = 374956165952121
+APP_SECRET = 'd71b898e1a65bf1ddd20d8944825feb9'
+SITE_URL   = 'https://www.badonathon.com/'
+
+
 
 
 
@@ -58,6 +70,7 @@ class App < Sinatra::Base
     notes = get_connection().collection('songs')  
   end
 
+  use Rack::Session::Cookie, secret: 'PUT_A_GOOD_SECRET_IN_HERE'
   set :root, File.dirname(__FILE__)
   set :app_file, __FILE__
   set :views, File.join('app', 'views')
@@ -119,6 +132,12 @@ class App < Sinatra::Base
 
   get '/' do
 
+    if session['access_token']
+      status = 'You are logged in! <a href="/logout">Logout</a>'
+    else
+      status = '<a href="/login">Login</a>'
+    end
+
     # get total donations from virgin
     # - using live data on prod
     if ENV['RACK_ENV'] == 'production'
@@ -138,7 +157,7 @@ class App < Sinatra::Base
     latestSong = get_connection().collection('songs').find().sort({_id:1}).to_a.map{|t| from_bson_id(t)} || {}
 
     # serve template with data
-    erb :"index.html", :layout => :"layout.html", :locals => {:data => data, :total => total, :latestSong => latestSong}
+    erb :"index.html", :layout => :"layout.html", :locals => {:data => data, :total => total, :latestSong => latestSong, :status => status}
   end
 
   get '/index.json' do
@@ -292,6 +311,29 @@ class App < Sinatra::Base
 
 
 
-  
+  # fb shiz
+  get '/login' do
+    # generate a new oauth object with your app data and your callback url
+    session['oauth'] = Facebook::OAuth.new(APP_ID, APP_SECRET, SITE_URL + 'callback')
+    # redirect to facebook to get your code
+    redirect session['oauth'].url_for_oauth_code()
+  end
+
+  get '/logout' do
+    session['oauth'] = nil
+    session['access_token'] = nil
+    redirect '/'
+  end
+
+  #method to handle the redirect from facebook back to you
+  get '/callback' do
+    #get the access token from facebook with your code
+    session['access_token'] = session['oauth'].get_access_token(params[:code])
+    redirect '/'
+  end
+
+
+
+
   run! if app_file == $0
 end
