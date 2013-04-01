@@ -107,7 +107,7 @@ class App < Sinatra::Base
       '/js/collections/*',
       '/js/views/*',
       '/js/marathonMan.js',
-      'js/script.js'
+      '/js/script.js'
     ]
     
     css :application, '/css/application.css', [

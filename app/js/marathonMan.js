@@ -56,8 +56,6 @@ window.MarathonMan = Backbone.Router.extend({
     },
 
     addsong: function() {
-        //$('#container').text('now at home');
-
         this.songSelectorView.render();
     },
 
