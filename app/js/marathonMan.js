@@ -23,15 +23,11 @@ window.MarathonMan = Backbone.Router.extend({
             // search: ?
         } );
 
-        this.playlistCollection = new PlaylistCollection();
+        this.homePage = new HomePageModel();
 
-        this.playlistView = new PlaylistView( {
-            collection : this.playlistCollection
-            // collection: ? 
-            // player: ?
-            // library: ?
-            // search: ?
-        } );
+        this.playlist = new PlaylistCollection();
+
+        this.flippinView = new FlippinView();
 
         this.navView = new NavView( {
             
@@ -42,29 +38,15 @@ window.MarathonMan = Backbone.Router.extend({
     },
 
     home: function() {
-        //$('#container').text('now at home');
+        this.flippinView.render('home');
+    },
 
-        var self = this;
-
-        this.homePage = new HomePageModel();
-
-        $.when(this.homePage.fetch()).done(function() {
-            self.homePageView = new HomePageView({
-                model: self.homePage
-            }).render();
-        });
+    playlist: function() {
+        this.flippinView.render('playlist');
     },
 
     addsong: function() {
         this.songSelectorView.render();
-    },
-
-    playlist: function() {
-        //$('#container').empty();
-        //$('#container').text('now at playlist');
-
-        // show the song selector
-        this.playlistView.render();
     },
 
     donate: function() {

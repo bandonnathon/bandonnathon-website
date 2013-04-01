@@ -92,6 +92,11 @@ body {
 
 /******/
 /* set perspective on outer container */
+#wrapper {
+  width: 100%;
+  height: 100%;
+}
+
 .flipContainer {
   -moz-perspective: 1000;
   -webkit-perspective: 1000;
@@ -121,7 +126,7 @@ body {
 }
 
 /* hide back of pane during swap */
-.flipFront, .flipBack {
+#flipFront, #flipBack {
   -moz-backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -133,12 +138,12 @@ body {
 }
 
 /* front pane, placed above back */
-.flipFront {
+#flipFront {
   z-index: 2;
 }
 
 /* back, initially hidden pane */
-.flipBack {
+#flipBack {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 } 
