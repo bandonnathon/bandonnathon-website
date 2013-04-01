@@ -213,10 +213,11 @@ body {
   font-family: "futura-pt";
   font-weight: 500;
   font-size: 1.1em;
-  background: #fc609d;
 }
 
 .donation {
+  background: rgb(255,255,255);
+  box-shadow: 3px 3px 0 0 rgb(252, 96, 157);
   position: absolute;
   left: 25px;
   top: 25px;
