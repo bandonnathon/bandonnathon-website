@@ -9,10 +9,13 @@ $(function() {
     if (response.authResponse) {
       startRouter();  
     } else {
-      FB.Event.subscribe('auth.login', function(response) {
-        console.log('waiting for auth...');
-        startRouter();
-      });
+
+      startRouter();
+      
+      // FB.Event.subscribe('auth.login', function(response) {
+      //   console.log('waiting for auth...');
+      //   startRouter();
+      // });
     }
   });
 

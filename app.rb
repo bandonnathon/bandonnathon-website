@@ -239,7 +239,7 @@ class App < Sinatra::Base
 
 
   get '/thanks' do
-    erb :"thanks.html", :layout => :"layout.html"
+    erb :"thanks.html", :layout => :"layout.html", :locals => { :fbAppId => ENV["FACEBOOK_APP_ID"] }
   end
 
 
