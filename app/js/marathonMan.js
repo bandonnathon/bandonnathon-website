@@ -23,6 +23,16 @@ window.MarathonMan = Backbone.Router.extend({
             // search: ?
         } );
 
+        this.playlistCollection = new PlaylistCollection();
+
+        this.playlistView = new PlaylistView( {
+            collection : this.playlistCollection
+            // collection: ? 
+            // player: ?
+            // library: ?
+            // search: ?
+        } );
+
         this.navView = new NavView( {
             
             el : $('#nav')
@@ -56,7 +66,7 @@ window.MarathonMan = Backbone.Router.extend({
         //$('#container').text('now at playlist');
 
         // show the song selector
-        this.songSelectorView.show();
+        this.playlistView.render();
     },
 
     donate: function() {
