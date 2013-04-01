@@ -61,6 +61,8 @@ end
 
 class App < Sinatra::Base
 
+  include Koala
+  
   configure :development do
     register Sinatra::Reloader
     enable :logging
