@@ -22,8 +22,6 @@ $(function() {
 
 
 function startRouter() {
-  
-  
 
   window.App = new MarathonMan();
 

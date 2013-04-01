@@ -167,7 +167,7 @@ class App < Sinatra::Base
       data = JSON.parse(j);
 
       data['percent'] = data['money_target'].to_i / 100
-      data['total'] = 100 - data['money_total'].to_i / percent
+      data['total'] = 100 - data['money_total'].to_i / data['percent']
 
     # - using stub data on dev
     else
