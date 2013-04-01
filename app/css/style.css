@@ -168,9 +168,20 @@ body {
 }
 
 .panel {
+  background: #fff;
+  background: rgba(255, 255, 255, .9);
+  box-shadow: 3px 3px 0 0 rgb(252, 96, 157);
+  font-family: "futura-pt";
+  font-weight: 500;
+  font-size: 1.1em;
   margin: 102px auto 0;
   max-width: 780px;
   position: relative;
+}
+
+.panel .inner,
+.panel .playlist .inner {
+  padding: 3em 2em 1.5em;
 }
 
 .panel h1 {
@@ -188,6 +199,24 @@ body {
   transform: matrix(1, -0.175, 0, 1, 0, 0);
 }
 
+.panel h2 {
+  font-size: 1.846em;
+  font-weight: normal;
+}
+
+.panel p {
+  color: #333;
+  font-size: 1.4em;
+}
+
+.panel p a {
+  color: rgb(252,96,157);
+}
+
+.panel p a:focus,
+.panel p a:hover {
+  color: rgb(68,42,141);
+}
 
 .welcome {
   margin: 0 auto 0;
@@ -216,13 +245,6 @@ body {
 .welcome .strap {
   -webkit-transform: matrix(1, -0.175, 0, 1, 0, 0);
   transform: matrix(1, -0.175, 0, 1, 0, 0);
-}
-
-.donation,
-.playlist {
-  font-family: "futura-pt";
-  font-weight: 500;
-  font-size: 1.1em;
 }
 
 .donation {
@@ -310,7 +332,8 @@ body {
   font-weight: 500;
 }
 
-.playlistpose {
+.playlistpose,
+.aboutpose {
   background: url(/images/bg-playlist.jpg) no-repeat 50% 0;
   background-size: cover;
   bottom: 10px;
@@ -365,32 +388,12 @@ body {
 }
 
 /******/
-
-
-
-
-.playlist {
-  background: #fff;
-  background: rgba(255, 255, 255, .9);
-  box-shadow: 3px 3px 0 0 rgb(252, 96, 157);
-}
-
-.playlist .inner {
-  padding: 3em 1.5em 1.5em;
-}
-
 .playlist li:after {
   clear: both;
   content: '';
   display: block;
   height: 0;
   visibility: hidden;
-}
-
-.playlist p {
-  color: #fc609d;
-  padding: 10px 20px;
-  font-size: 1.2em;
 }
 
 p.playlistTitle {
@@ -448,7 +451,7 @@ p.playlistTitle {
   margin: 0;
   padding: 0;
   text-transform: uppercase;
-  width: 705px;
+  width: 690px;
 }
 
 .playlist ul {
@@ -483,3 +486,13 @@ p.playlistTitle {
 .playlist-mix ul {
   color: rgb(51,51,51);
 }
+
+/* about */
+.aboutpose {
+  background-image: url(/images/bg-about.jpg);
+}
+
+.trustImg {
+  float: right;
+}
+/* end about */

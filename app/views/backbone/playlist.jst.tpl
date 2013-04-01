@@ -5,20 +5,7 @@
 
         <h1>The marathon mix</h1>
 
-        <ul id="playlist">
-          <li>
-            <span class="track-name">Beyonce</span>
-            <span class="track-from">from Hannah Drury</span>
-          </li>
-          <li>
-            <span class="track-name">Beyonce</span>
-            <span class="track-from">from Hannah Drury</span>
-          </li>
-          <li>
-            <span class="track-name">Beyonce</span>
-            <span class="track-from">from Hannah Drury</span>
-          </li>
-        </ul>
+        <ul id="playlist"></ul>
 
         <a href="/addsong" class="cta-donate">Donate to add your song to the marathon mix</a>
       </div>
