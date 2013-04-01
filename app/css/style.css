@@ -184,7 +184,11 @@ body {
   line-height: 1.5;
   padding: 0 .5em;
   text-transform: uppercase;
-  -webkit-transform: matrix(1, -0.175, 0, 1, 0, 0);
+}
+
+.strap {
+  display: inline-block;
+ -webkit-transform: matrix(1, -0.175, 0, 1, 0, 0); 
 }
 
 .donation,
