@@ -8,7 +8,6 @@
 			<span class="donation-meter"><span style="height: 20px; width: <%= total %>%; display: block; background: url(/images/donation-meter-target-dark.gif);"></span></span>
 			<a href="#" class="donation-charity">for the Terrence Higgins Trust</a>
 		</div>
-		<span class="border"></span>
 	</div>
 
 	<div class="welcome">
