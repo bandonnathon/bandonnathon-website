@@ -61,8 +61,8 @@ img {
 body {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 75%;
+  line-height: 1.5;
   color: #333333;
   background-color: #ffffff;
 }
@@ -162,6 +162,27 @@ body {
   z-index: 1;
 }
 
+.panel {
+  margin: 102px auto 0;
+  max-width: 780px;
+  position: relative;
+}
+
+.panel h1 {
+  background: #4edaa9;
+  background: rgb(78,218,169);
+  color: #fff;
+  display: inline-block;
+  margin: 0;
+  padding: 0 .5em;
+  position: absolute;
+  top: -1em;
+  left: 0;
+  -webkit-transform: matrix(1, -0.175, 0, 1, 0, 0);
+  transform: matrix(1, -0.175, 0, 1, 0, 0);
+}
+
+
 .welcome {
   margin: 0 auto 0;
   position: relative;
@@ -197,20 +218,18 @@ body {
   font-weight: 500;
   font-size: 1.1em;
   background: #fc609d;
+}
+
+.donation {
   position: absolute;
   left: 25px;
   top: 25px;
   width: 240px;
 }
 
-.playlist {
-  width: 100%;
-}
-
 .donation .inner,
 .player .inner,
 .playlist .inner {
-  background: #fff;
   padding: 14px;
   position: relative;
   z-index: 2;
@@ -331,13 +350,14 @@ body {
 
 
 .playlist {
-  text-transform: uppercase;
-  /*opacity: 0.7;*/
   background: #fff;
+  background: rgba(255, 255, 255, .9);
+  box-shadow: 3px 3px 0 0 rgb(252, 96, 157);
+  text-transform: uppercase;
 }
 
 .playlist .inner {
-  padding: 0;
+  padding: 3em 1.5em;
 }
 
 .playlist ul {
@@ -372,14 +392,68 @@ p.playlistTitle {
   width: 100%;
   height: 100%;
   position: absolute;
-  left: 30px;
+  left: 3px;
   top: 3px;
 }
 
-/******/
+.playlist .search-spotify {
+  border-bottom: 1px solid rgb(78,218,169);
+  position: relative;
+}
 
+.playlist .search-spotify input[type="submit"] {
+  background: url(/images/icon-search.png) no-repeat 0 0;
+  border: 0;
+  float: right;
+  height: 35px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  text-indent: 100%;
+  white-space: nowrap;
+  width: 35px;
+}
 
+.playlist .search-spotify input[type="submit"]:focus,
+.playlist .search-spotify input[type="submit"]:hover {
+  background-position: 100% 0;
+}
 
+.playlist .search-spotify input[type="text"] {
+  background: transparent;
+  border: 0;
+  color: rgb(51,51,51);
+  float: left;
+  font-family: "futura-pt";
+  font-size: 2em;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  width: 705px;
+}
 
+.playlist ul {
+  color: rgb(252,96,157);
+  font-family: "futura-pt";
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0;
+}
 
+.playlist ul li {
+  border-bottom: 1px solid rgb(78,218,169);
+}
 
+.playlist ul .track-name {
+  float: left;
+}
+
+.playlist ul .track-artist {
+  float: right;
+}
+
+.playlist ul form {
+  clear: both;
+}
