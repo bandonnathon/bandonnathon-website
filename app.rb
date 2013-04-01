@@ -24,7 +24,7 @@ require 'koala'
 # fb shiz
 APP_ID     = 374956165952121
 APP_SECRET = 'd71b898e1a65bf1ddd20d8944825feb9'
-SITE_URL   = 'https://www.badonathon.com/'
+SITE_URL   = 'https://www.badonnathon.com/'
 
 
 
@@ -62,7 +62,7 @@ end
 class App < Sinatra::Base
 
   include Koala
-  
+
   configure :development do
     register Sinatra::Reloader
     enable :logging
