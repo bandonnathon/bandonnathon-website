@@ -5,7 +5,8 @@ window.HomePageView = Backbone.View.extend({
     template: 'backbone/home',
 
     events: {
-        'click .money4trax': 'addSong'
+        'click .money4trax': 'addSong',
+        'click .playlist': 'showPlaylist'
     },
 
     initialize: function() {
@@ -18,6 +19,12 @@ window.HomePageView = Backbone.View.extend({
         ev.preventDefault();
 
         App.navigate('/addsong', { trigger: true });
+    },
+
+    showPlaylist: function(ev) {
+        ev.preventDefault();
+
+        App.navigate('/playlist', { trigger: true });
     },
 
     render: function() {

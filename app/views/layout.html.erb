@@ -28,8 +28,13 @@
 
         <!-- ***** -->
         <!-- THIS IS WHERE OUR SINATRA VIEWS GO -->
-        <div id="wrapper">
-            <%= yield %>
+        <div class="flipContainer">
+            <div class="flipInner">
+                <div id="wrapper" class="flipFront">
+                    <%= yield %>
+                </div>
+                <div id="wrapperBehind" class="flipBack"></div>
+            </div>
         </div>
         <!-- ***** -->
 
