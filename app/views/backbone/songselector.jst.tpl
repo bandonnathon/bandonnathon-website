@@ -1,20 +1,21 @@
 <div class="page">
-  <div class="welcome">
+  <div class="panel">
     <div class="playlist">
       <div class="inner">
 
-        this is where the select-a-song form goes
+        <h1>Choose your track</h1>
           
-          <form action="/search">
-          <input type="text" name="song" value="type a song's name or artist here" />
+        <form action="/search" class="search-spotify clearfix">
+          <input type="text" name="song" placeholder="Type a song's name or artist here" />
           <input type="submit" />
-          </form>
+        </form>
+
+        <% if(hasResults) { %>
+        <ul id="results"></ul>
+        <% } %>
 
       </div>
-      <span class="border"></span>
     </div>
-      <% if(hasResults) { %>
-        <ul id="results"></ul>
-      <% } %>
   </div>
 </div>
+<div class="playlistpose"></div>
