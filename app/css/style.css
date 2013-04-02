@@ -167,6 +167,20 @@ body {
   z-index: 1;
 }
 
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 10em;
+  font-weight: 100;
+  line-height: 0.8em;
+  color: rgb(252,96,157);
+}
+
+.close:hover {
+  color: rgb(252,96,157);
+}
+
 .panel {
   background: #fff;
   background: rgba(255, 255, 255, .9);
@@ -174,9 +188,10 @@ body {
   font-family: "futura-pt";
   font-weight: 500;
   font-size: 1.1em;
-  margin: 102px auto 0;
+  margin: 0 auto 0;
   max-width: 780px;
   position: relative;
+  top: 102px;
 }
 
 .panel .inner,

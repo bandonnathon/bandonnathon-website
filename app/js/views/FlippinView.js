@@ -7,7 +7,8 @@ window.FlippinView = Backbone.View.extend({
     events: {
         'click a.money4trax': 'addSong',
         'click a.playlist': 'showPlaylist',
-        'click a.cta-donate': 'addSong'
+        'click a.cta-donate': 'addSong',
+        'click a.close': 'close'
     },
 
     initialize: function() {
@@ -22,6 +23,14 @@ window.FlippinView = Backbone.View.extend({
         ev.stopPropagation();
 
         App.navigate('/addsong', { trigger: true });
+    },
+
+    close: function(ev) {
+        ev.preventDefault();
+
+        ev.stopPropagation();
+
+        window.history.back();
     },
 
     showPlaylist: function(ev) {
