@@ -17,7 +17,7 @@ window.PlaylistView = Backbone.View.extend({
 
         var $playlistContainer = this.$el.find('#playlist');
 
-        App.searchResultsCollection.each(function(song) {
+        App.playlist.each(function(song) {
         	$playlistContainer.append(new PlaylistItemView({
         		model: song
         	}).render().el);
