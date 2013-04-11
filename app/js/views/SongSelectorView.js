@@ -27,7 +27,20 @@ window.SongSelectorView = Backbone.View.extend({
     },
 
     render: function() {
-    	this.$el.empty();
+
+        var searchInput = $('input[name="song"]');
+        var defaultVal = searchInput.val();
+
+        searchInput.on({
+            focus: function () {
+                $(this).attr('value', '');
+            },
+            blur: function () {
+                $(this).attr('value', defaultVal);
+            }
+        });
+
+        this.$el.empty();
 
         this.$el.html(JST[this.template]({ "hasResults": App.searchResultsCollection.length > 0 ? true : false }));
 
