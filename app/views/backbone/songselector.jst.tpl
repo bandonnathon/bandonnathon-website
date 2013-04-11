@@ -14,7 +14,7 @@
         <% if(hasResults) { %>
         <ul id="results"></ul>
 
-        <a class="cta-give" href="https://uk.virginmoneygiving.com/fundraiser-web/donate/makeDonationForFundraiserDisplay.action?fundraiserActivityId=280684">Give your cash to add your pumpin' track</a>
+        <a class="cta-give" href="https://uk.virginmoneygiving.com/fundraiser-web/donate/makeDonationForFundraiserDisplay.action?fundraiserActivityId=280684">Boom. Now hand over your cash. Pleeeeease</a>
         <% } %>
 
       </div>
