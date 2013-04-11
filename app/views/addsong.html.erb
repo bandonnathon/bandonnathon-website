@@ -1,6 +1,5 @@
-<%= erb :_menu, :locals => { :current => 'addsong' } %>
-
 <div class="page">
+  <a href="/" class="close" title="Close song selector">X</a>
   <div class="panel">
     <div class="playlist">
       <div class="inner">
@@ -9,7 +8,7 @@
 
         <% if @loggedin == true %>
           
-          <form action="/search">
+          <form action="/search" class="search-spotify clearfix">
           <input type="text" name="song" value="Type a song's name or artist here" />
           <input type="submit" />
           </form>
@@ -24,3 +23,4 @@
     </div>
   </div>
 </div>
+<div class="playlistpose"></div>

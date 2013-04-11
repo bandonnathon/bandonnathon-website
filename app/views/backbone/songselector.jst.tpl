@@ -1,5 +1,5 @@
 <div class="page">
-  <a href="#" class="close" title="Close song selector">X</a>
+  <a href="/" class="close" title="Close song selector">X</a>
   <div class="panel">
     <div class="playlist">
       <div class="inner">
