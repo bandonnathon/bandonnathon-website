@@ -12,9 +12,21 @@
         </form>
 
         <% if(hasResults) { %>
+        <form action="/playlist" method="post">
         <ul id="results"></ul>
 
-        <a class="cta-give" href="https://uk.virginmoneygiving.com/fundraiser-web/donate/makeDonationForFundraiserDisplay.action?fundraiserActivityId=280684">Boom. Now hand over your cash. Pleeeeease</a>
+<!-- <a class="cta-give" href="https://uk.virginmoneygiving.com/fundraiser-web/donate/makeDonationForFundraiserDisplay.action?fundraiserActivityId=280684">Boom. Now hand over your cash. Pleeeeease</a> -->
+ 
+          <input type="hidden" name="album" value="" />
+          <input type="hidden" name="popularity" value="" />
+          <input type="hidden" name="artist" value="" />
+          <input type="hidden" name="href" value="" />
+
+        <button class="cta-give">
+          Boom. Now hand over your cash. Pleeeeease
+        </button>
+
+        </form>
         <% } %>
 
       </div>

@@ -479,6 +479,7 @@ p.playlistTitle {
 
 .playlist .search-spotify {
   border-bottom: 1px solid rgb(78,218,169);
+  margin: 0 0 1em;
   position: relative;
 }
 
@@ -510,9 +511,9 @@ p.playlistTitle {
   font-size: 2em;
   line-height: 1.5;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 10px;
   text-transform: uppercase;
-  width: 690px;
+  width: 680px;
 }
 
 .playlist ul {
@@ -525,19 +526,38 @@ p.playlistTitle {
 
 .playlist ul li {
   border-bottom: 1px solid rgb(78,218,169);
+  cursor: pointer;
   list-style: none;
-  padding: .25em 0;
+  padding: .25em .5em;
+}
+
+.playlist ul li input[type="radio"] {
+  display: none;
+}
+
+.playlist ul li:hover,
+.playlist ul .selected {
+  background: rgb(68,42,141);
+  color: rgb(255,255,255);
 }
 
 .playlist ul .track-name {
   float: left;
-  text-transform: uppercase;  
+  text-transform: uppercase;
+  width: 60%;
 }
 
 .playlist ul .track-artist,
 .playlist ul .track-from {
   float: right;
   text-transform: inherit;
+}
+
+.playlist .cta-give {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
 }
 
 .playlist ul form {

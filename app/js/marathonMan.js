@@ -1,5 +1,5 @@
 window.MarathonMan = Backbone.Router.extend({
-        
+
     routes: {
         'playlist': 'playlist',
         '': 'home',
@@ -31,7 +31,7 @@ window.MarathonMan = Backbone.Router.extend({
         this.flippinView = new FlippinView();
 
         this.navView = new NavView( {
-            
+
             el : $('#nav')
 
         } );
