@@ -108,7 +108,7 @@ body {
 .flipInner {
   -moz-transition: 0.6s;
   -moz-transform-style: preserve-3d;
-  -webkit-transition: 0.6s;
+  -webkit-transition: 0.6;
   -webkit-transform-style: preserve-3d;
   transition: 0.6s;
   transform-style: preserve-3d;
@@ -368,6 +368,7 @@ body {
 .donation .donation-charity {
   /*color: #fc609d;*/
   font-size: 1.154em;
+  text-decoration: underline;
 }
 
 
@@ -384,9 +385,19 @@ body {
   font-weight: 500;
 }
 
-.playlistpose,
-.aboutpose {
+.playlistpose {
   background: url(/images/bg-playlist.jpg) no-repeat 50% 0;
+  background-size: cover;
+  bottom: 10px;
+  left: 10px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 1;
+}
+
+.playlistpose {
+  background: url(/images/bg-donation.jpg) no-repeat 50% 0;
   background-size: cover;
   bottom: 10px;
   left: 10px;
@@ -539,6 +550,15 @@ p.playlistTitle {
 .playlist ul .selected {
   background: rgb(68,42,141);
   color: rgb(255,255,255);
+}
+
+.playlist-mix ul li {
+  cursor: auto;
+}
+
+.playlist-mix ul li:hover {
+  background: transparent;
+  color: rgb(51,51,51);
 }
 
 .playlist ul .track-name {

@@ -7,7 +7,7 @@
         <h1>Pick your track</h1>
           
         <form action="/search" class="search-spotify clearfix">
-          <input type="text" name="song" value="Type a song's name or artist here" />
+          <input type="text" name="song" value="What song or artist are you looking for?'" />
           <input type="submit" />
         </form>
 
@@ -23,7 +23,7 @@
           <input type="hidden" name="href" value="" />
 
         <button class="cta-give">
-          Boom. Now hand over your cash. Pleeeeease
+          Give your cash to add your pumpin' track
         </button>
 
         </form>

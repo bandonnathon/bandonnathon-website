@@ -2,7 +2,7 @@
 	
 	<div class="donation">
 		<div class="inner">
-			<a href="/addsong" class="money4trax">Give your cash to add your fave track</a>
+			<a href="/addsong" class="money4trax">Give your cash to add your pumpin' track</a>
 			<span class="donation-intro">Big up you've raised</span>
 			<span class="donation-total">&pound;<%= money_total %></span>
 			<span class="donation-meter"><span style="height: 20px; width: <%= total %>%; display: block; background: url(/images/donation-meter-target-dark.gif);"></span></span>
