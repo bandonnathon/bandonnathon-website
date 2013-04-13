@@ -30,7 +30,9 @@ window.FlippinView = Backbone.View.extend({
 
         ev.stopPropagation();
 
-        window.history.back();
+        App.navigate('/');
+
+        this.toggleFlipped();
     },
 
     showPlaylist: function(ev) {
@@ -38,10 +40,16 @@ window.FlippinView = Backbone.View.extend({
 
         ev.stopPropagation();
 
-        App.navigate('/playlist', { trigger: true });
+        App.navigate('/playlist');
+        this.toggleFlipped();
+    },
+
+    toggleFlipped: function() {
+        this.$el.find('.flipContainer').toggleClass('flipped');
     },
 
     render: function(state) {
+
         this.$el.html(JST[this.template]);
 
         $.when(App.homePage.fetch()).done(function() {
